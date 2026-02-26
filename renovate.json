@@ -1,0 +1,59 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:recommended",
+        ":prImmediately",
+        ":rebaseStalePrs",
+        ":combinePatchMinorReleases"
+    ],
+    "dependencyDashboard": true,
+    "labels": [
+        "dependencies"
+    ],
+    "packageRules": [
+        {
+            "matchUpdateTypes": [
+                "minor",
+                "patch"
+            ],
+            "matchPackageNames": [
+                "vllm/vllm-openai"
+            ],
+            "automerge": true
+        },
+        {
+            "matchPackagePatterns": [
+                "*"
+            ],
+            "matchUpdateTypes": [
+                "minor",
+                "patch"
+            ],
+            "automerge": true
+        }
+    ],
+    "customManagers": [
+        {
+            "customType": "regex",
+            "fileMatch": [
+                "^Dockerfile$"
+            ],
+            "matchStrings": [
+                "ARG BASE_TAG=(?<currentValue>.*)\\n"
+            ],
+            "depNameTemplate": "vllm/vllm-openai",
+            "datasourceTemplate": "docker"
+        },
+        {
+            "customType": "regex",
+            "fileMatch": [
+                "^\\.github/workflows/publish\\.yml$"
+            ],
+            "matchStrings": [
+                "default: '(?<currentValue>v[^']*)'"
+            ],
+            "depNameTemplate": "vllm/vllm-openai",
+            "datasourceTemplate": "docker"
+        }
+    ]
+}
