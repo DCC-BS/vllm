@@ -44,5 +44,3 @@ jobs:
             BASE_TAG=${{ github.event.inputs.vllm_tag }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
