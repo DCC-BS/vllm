@@ -6,7 +6,7 @@ on:
       vllm_tag:
         description: 'vLLM upstream image tag'
         required: true
-        default: 'v0.17.0-cu130'
+        default: 'v0.19.0-cu130'
 
 jobs:
   build:
